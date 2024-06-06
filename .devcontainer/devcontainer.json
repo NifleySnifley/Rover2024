@@ -1,0 +1,84 @@
+// See https://aka.ms/vscode-remote/devcontainer.json for format details.
+{
+	"dockerFile": "Dockerfile",
+	"build": {
+		"args": {
+			"WORKSPACE": "${containerWorkspaceFolder}"
+		}
+	},
+	"runArgs": [
+		"--privileged",
+		"--env=DISPLAY=${localEnv:DISPLAY}",
+		"--network=host",
+		"--cap-add=SYS_PTRACE",
+		"--security-opt=seccomp:unconfined",
+		"--security-opt=apparmor:unconfined",
+		// "--volume=/tmp/.X11-unix:/tmp/.X11-unix",
+		// "--volume=/mnt/wslg:/mnt/wslg",
+		"--ipc=host"
+	],
+	// "mounts": [
+	// 	"source=/mnt/wslg:/mnt/wslg,type=bind,consistency=cached"
+	// ],
+	"forwardPorts": [
+		8080
+	],
+	"remoteUser": "ros",
+	"containerEnv": {
+		"DISPLAY": ":0",
+		"WAYLAND_DISPLAY": "wayland-0",
+		"XDG_RUNTIME_DIR": "/mnt/wslg/runtime-dir",
+		"PULSE_SERVER": "/mnt/wslg/PulseServer",
+		"LIBGL_ALWAYS_SOFTWARE": "1", // Needed for software rendering of opengl
+		"ROS_AUTOMATIC_DISCOVERY_RANGE": "LOCALHOST",
+		"ROS_DOMAIN_ID": "7"
+	},
+	// "initializeCommand": "git config --global --add safe.directory /workspaces/ROSRover", //& git reset --soft && git submodule update --init --recursive && git config --global submodule.recurse true && git pull
+	"postCreateCommand": "echo 'source /opt/ros/iron/setup.bash' >> ~/.bashrc",
+	"postStartCommand": "git config --global --add safe.directory /workspaces/ROSRover && sudo apt-get update && rosdep update && rosdep install -i --from-path src --rosdistro $ROS_DISTRO -y",
+	// Set *default* container specific settings.json values on container create.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"althack.ament-task-provider",
+				"betwo.b2-catkin-tools",
+				"DotJoshJohnson.xml",
+				"ms-azuretools.vscode-docker",
+				"ms-python.python",
+				"ms-vscode.cpptools",
+				"redhat.vscode-yaml",
+				"smilerobotics.urdf",
+				"streetsidesoftware.code-spell-checker",
+				"twxs.cmake",
+				"yzhang.markdown-all-in-one",
+				"zachflower.uncrustify",
+				"ms-iot.vscode-ros",
+				"ms-vscode.cpptools-extension-pack",
+				"VisualStudioExptTeam.vscodeintellicode"
+			]
+		},
+		"settings": {
+			"git.autofetch": true,
+			"editor.inlineSuggest.enabled": true,
+			"files.autoSave": "afterDelay",
+			"editor.formatOnSave": true,
+			"[python]": {
+				"editor.defaultFormatter": "ms-python.black-formatter",
+				"editor.codeActionsOnSave": {
+					"source.fixAll": true
+				}
+			},
+			"black-formatter.args": [
+				"--line-length",
+				"120"
+			],
+			"ruff.lint.args": [
+				"--ignore=E501" // Ignore line too long
+			],
+			"[c++]": {
+				"editor.defaultFormatter": "ms-vscode.cpptools"
+			},
+			"C_Cpp.clang_format_fallbackStyle": "{ ColumnLimit: 120 }"
+		}
+	}
+}

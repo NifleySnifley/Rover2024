@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "inttypes.h": "c",
+        "errno.h": "c",
+        "libjaguar.h": "c",
+        "unistd.h": "c"
+    }
+}
