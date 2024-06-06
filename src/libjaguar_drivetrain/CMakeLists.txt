@@ -38,6 +38,10 @@ target_compile_definitions(jaguar_twist_drivetrain_node PUBLIC
 	-DCANDRIVER_SERIAL=1
 )
 
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}
+)
+
 install(TARGETS
   jaguar_twist_drivetrain_node
   DESTINATION lib/${PROJECT_NAME})

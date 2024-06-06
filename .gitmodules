@@ -1,3 +1,6 @@
 [submodule "src/libjaguar_drivetrain/libjaguar"]
 	path = src/libjaguar_drivetrain/libjaguar
 	url = https://github.com/NifleySnifley/libjaguar
+[submodule "src/navx"]
+	path = src/navx
+	url = https://github.com/GOFIRST-Robotics/navx
