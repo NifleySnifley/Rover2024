@@ -21,6 +21,11 @@ public:
 		this->declare_parameter("RIGHT_ID", 2);
 		this->declare_parameter("NOMINAL_VOLTAGE", 12.0f);
 
+		this->declare_parameter("INVERT_LEFT", false);
+		this->declare_parameter("INVERT_RIGHT", false);
+		this->declare_parameter("INVERT_STEERING", false);
+
+
 		int res = open_can_connection(&conn, this->get_parameter("PORT").as_string().c_str());
 		if (res != 0) {
 			RCLCPP_ERROR(this->get_logger(), "Could not open CAN connection");
@@ -36,11 +41,16 @@ public:
 
 private:
 	void topic_callback(const geometry_msgs::msg::Twist& msg) const {
-
-		float lwheel_vel = std::min(1.0, std::max(-1.0, msg.linear.x + msg.angular.z));
-		float rwheel_vel = std::min(1.0, std::max(-1.0, msg.linear.x - msg.angular.z));
+		float steer = msg.angular.z * (this->get_parameter("INVERT_STEERING").as_bool() ? -1.0f : 1.0f);
+		float lwheel_vel = std::min(1.0, std::max(-1.0, msg.linear.x + steer));
+		float rwheel_vel = std::min(1.0, std::max(-1.0, msg.linear.x - steer));
 		RCLCPP_INFO(this->get_logger(), "Left: %.2f, Right: %.2f\n", lwheel_vel, rwheel_vel);
 
+		if (this->get_parameter("INVERT_LEFT").as_bool())
+			lwheel_vel *= -1.0f;
+		
+		if (this->get_parameter("INVERT_RIGHT").as_bool())
+			rwheel_vel *= -1.0f;
 
 		float V = this->get_parameter("NOMINAL_VOLTAGE").as_double();
 		voltcomp_set((CANConnection*)&this->conn, this->get_parameter("LEFT_ID").as_int(), float_to_fixed16(V * lwheel_vel));

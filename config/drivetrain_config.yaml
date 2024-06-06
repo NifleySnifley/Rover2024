@@ -1,0 +1,9 @@
+/**:
+  ros__parameters:
+    LEFT_ID: 1
+    RIGHT_ID: 2
+    PORT: "/dev/ttyUSB0"
+    NOMINAL_VOLTAGE: 12.0
+    INVERT_LEFT: true
+    INVERT_RIGHT: false
+    INVERT_STEERING: true
