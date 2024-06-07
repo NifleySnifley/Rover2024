@@ -4,3 +4,6 @@
 [submodule "src/navx"]
 	path = src/navx
 	url = https://github.com/GOFIRST-Robotics/navx
+[submodule "src/usb_cam"]
+	path = src/usb_cam
+	url = https://github.com/ros-drivers/usb_cam

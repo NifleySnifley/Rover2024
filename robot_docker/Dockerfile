@@ -23,10 +23,12 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y python3-pip ros-dev-tools python3-rosdep
 ENV SHELL /bin/bash
 ENV DEBIAN_FRONTEND=dialog
+ENV RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 
 ADD ./ /Rover2024
-RUN cd /Rover2024 && . /opt/ros/iron/setup.bash && rosdep install --from-paths src -y --ignore-src && colcon build
+RUN cd /Rover2024 && . /opt/ros/iron/setup.sh && rosdep install --from-paths src -y --ignore-src && colcon build
 
 # Set up auto-source of workspace for ros user
 ARG WORKSPACE
 RUN echo "if [ -f ${WORKSPACE}/install/setup.bash ]; then source ${WORKSPACE}/install/setup.bash; fi" >> /home/ros/.bashrc
+RUN echo "EXPORT ROS_DOMAIN_ID=7" >> /home/ros/.bashrc

@@ -35,7 +35,7 @@
 	},
 	// "initializeCommand": "git config --global --add safe.directory /workspaces/ROSRover", //& git reset --soft && git submodule update --init --recursive && git config --global submodule.recurse true && git pull
 	"postCreateCommand": "echo 'source /opt/ros/iron/setup.bash' >> ~/.bashrc",
-	"postStartCommand": "git config --global --add safe.directory /workspaces/ROSRover && sudo apt-get update && rosdep update && rosdep install -i --from-path src --rosdistro $ROS_DISTRO -y",
+	"postStartCommand": "git config --global --add safe.directory /workspaces/ROSRover && git submodule update --init --recursive && sudo apt-get update && rosdep update && rosdep install -i --from-path src --rosdistro $ROS_DISTRO -y",
 	// Set *default* container specific settings.json values on container create.
 	"customizations": {
 		"vscode": {
