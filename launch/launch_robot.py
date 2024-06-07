@@ -23,8 +23,17 @@ def generate_launch_description():
         output="screen",
         emulate_tty=True,
     )
+    
+    camera_launch = Node(
+        package="usb_cam",
+        executable="usb_cam_node_exe",
+        name="usb_cam_node",
+        output="screen",
+        emulate_tty=True,
+    )
 
     ld.add_action(drivetrain_launch)
+    ld.add_action(camera_launch)
     ld.add_action(navx_launch)
 
     # Return the launch description
