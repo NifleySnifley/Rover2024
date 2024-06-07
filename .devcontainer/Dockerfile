@@ -16,13 +16,13 @@ RUN groupadd --gid $USER_GID $USERNAME \
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y python3-pip
 ENV SHELL /bin/bash
-RUN apt-get update \
-	&& apt-get -y install --no-install-recommends git vim ros-iron-rviz2 ros-iron-rqt ros-iron-joy \
-	#
-	# Clean up
-	&& apt-get autoremove -y \
-	&& apt-get clean -y \
-	&& rm -rf /var/lib/apt/lists/*
+# RUN apt-get update \
+# 	&& apt-get -y install --no-install-recommends git vim ros-iron-rviz2 ros-iron-rqt ros-iron-joy \
+# 	#
+# 	# Clean up
+# 	&& apt-get autoremove -y \
+# 	&& apt-get clean -y \
+# 	&& rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=dialog
 
 # Set up auto-source of workspace for ros user
