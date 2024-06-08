@@ -1,0 +1,10 @@
+arm_spacenav_controller_node:
+  ros__parameters:
+    SPRAYER_BUTTON: 0
+    HOME_BUTTON: 1
+    SPRAY_LEVEL: 1.0
+    MAX_EXTENSION: 40.0
+    SPEED_MULTIPLIER: 20.0
+    ROT_SPEED_MULTIPLIER: 40.0
+    DEADBAND: 0.15
+    HOME_POSITION: "(0,10.0,6.0,0.0)" # X (l/r) cm, Y (f/b) cm, Z (u/d) cm, R(u/d) deg

@@ -15,6 +15,12 @@ def generate_launch_description():
             PathJoinSubstitution([FindPackageShare("libjaguar_drivetrain"), "launch/drivetrain_launch.py"])
         )
     )
+    
+    arm_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution([FindPackageShare("arm_interface"), "launch/arm_controller_launch.py"])
+        )
+    )
 
     navx_launch = Node(
         package="navx",
@@ -33,6 +39,7 @@ def generate_launch_description():
     )
 
     ld.add_action(drivetrain_launch)
+    ld.add_action(arm_launch)
     ld.add_action(camera_launch)
     ld.add_action(navx_launch)
 

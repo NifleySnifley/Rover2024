@@ -48,7 +48,7 @@ private:
 
 		if (this->get_parameter("INVERT_LEFT").as_bool())
 			lwheel_vel *= -1.0f;
-		
+
 		if (this->get_parameter("INVERT_RIGHT").as_bool())
 			rwheel_vel *= -1.0f;
 
