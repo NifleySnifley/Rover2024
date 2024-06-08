@@ -2,7 +2,7 @@
   ros__parameters:
     LEFT_ID: 1
     RIGHT_ID: 2
-    PORT: "/dev/ttyUSB0"
+    PORT: "/dev/tty_Jaguar"
     NOMINAL_VOLTAGE: 12.0
     INVERT_LEFT: true
     INVERT_RIGHT: false
