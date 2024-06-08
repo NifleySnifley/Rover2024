@@ -7,3 +7,7 @@
 [submodule "src/usb_cam"]
 	path = src/usb_cam
 	url = https://github.com/ros-drivers/usb_cam
+[submodule "nmea_navsat_driver"]
+    path = src/nmea_navsat_driver
+    url = https://github.com/ros-drivers/nmea_navsat_driver
+    branch = ros2
