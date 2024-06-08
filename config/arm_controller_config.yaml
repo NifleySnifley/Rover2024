@@ -1,4 +1,4 @@
-arm_spacenav_controller_node:
+/**:
   ros__parameters:
     SPRAYER_BUTTON: 0
     HOME_BUTTON: 1

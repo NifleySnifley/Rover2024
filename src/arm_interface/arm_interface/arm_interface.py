@@ -9,7 +9,7 @@ from rover_interfaces.msg import ArmPosition
 class ArmInterface(Node):
 
     def __init__(self):
-        super().__init__('arm_interface')
+        super().__init__('arm_interface_node')
         self.declare_parameter('PORT', '/dev/ttyACM0')
         
         self.portname = self.get_parameter('PORT').value

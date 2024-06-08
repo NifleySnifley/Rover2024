@@ -16,7 +16,7 @@ def deadband(num, deadband):
 class ArmSpacenav(Node):
 
     def __init__(self):
-        super().__init__('arm_spacenav_controller')
+        super().__init__('arm_spacenav_controller_node')
         self.declare_parameter('SPRAYER_BUTTON', 0)
         self.declare_parameter('HOME_BUTTON', 1)
         self.declare_parameter('SPRAY_LEVEL', 1.0)
