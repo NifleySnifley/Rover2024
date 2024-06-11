@@ -1,0 +1,4 @@
+/**:
+  ros__parameters:
+    WHACKER_BUTTON_VALUE: 0.8
+    WHACKER_SPEED_AXIS: 2

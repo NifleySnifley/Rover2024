@@ -18,6 +18,14 @@ def generate_launch_description():
             output="screen",
             emulate_tty=True
         ),
+        Node(
+            package='arm_interface',
+            executable='whacker_control_node',
+            name='whacker_control',
+            parameters=["config/whacker_controller_config.yaml"],
+            output="screen",
+            emulate_tty=True
+        ),
         IncludeLaunchDescription(
 			PythonLaunchDescriptionSource(
 				PathJoinSubstitution([FindPackageShare("arm_interface"), "launch/arm_only_launch.py"])

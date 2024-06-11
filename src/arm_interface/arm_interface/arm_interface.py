@@ -25,6 +25,13 @@ class ArmInterface(Node):
             10 # QoS
         )
         
+        self.whacker_sub = self.create_subscription(
+            Float32,
+            'whacker',
+            self.whacker_speed_callback,
+            10 # QoS
+        )
+        
         self.position_sub = self.create_subscription(
             ArmPosition,
             'position',
@@ -39,6 +46,10 @@ class ArmInterface(Node):
     def sprayer_callback(self, msg: Float32):
         power = max(0.0, min(1.0, float(msg.data)))
         self.send_serial(f"$S{round(power, ndigits=3)}^")
+        
+    def whacker_speed_callback(self, msg: Float32):
+        power = max(0.0, min(1.0, float(msg.data)))
+        self.send_serial(f"$W{round(power, ndigits=3)}^")
         
     def xyzr_callback(self, msg:ArmPosition):
         # print(msg.position, msg.effector_pitch)

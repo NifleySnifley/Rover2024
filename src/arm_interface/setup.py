@@ -28,6 +28,7 @@ setup(
         'console_scripts': [
             'arm_interface_node = arm_interface.arm_interface:main',
             'arm_spacenav_control_node = arm_interface.arm_spacenav_control:main',
+            'whacker_control_node = arm_interface.whacker_control:main'
         ],
     },
 )
